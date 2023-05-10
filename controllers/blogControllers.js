@@ -12,23 +12,23 @@ const getallblog =async (req, res) => {
 }
 
 
-
 const createblog = async (req, res) => {
 
-    Blog.create(req.body).then((blog)=> {
+    try{
+        const blog = await Blog.create(req.body);
         res.status(200).json({
             "message": 'Blog added successfully',
             "blog_id": blog._id,
             "status": 'success'
         });
-    }).catch((err) => {
+    }catch(err){
         res.status(404).json({
             "status": 'fail',
             "message": err.message
         });
-    });
-   
+    }
 }
+
 
 const deleteblog = async (req, res) => {
 
@@ -43,20 +43,20 @@ const deleteblog = async (req, res) => {
         })
     }
 
-    Blog.findByIdAndDelete(id).then(() => {
+    try{
+        await Blog.findByIdAndDelete(id);
         res.status(200).json({
             status: 'success',
             message: 'Blog deleted successfully'
         });
-    })
-    .catch((err) => {
+    }catch(err){
         res.status(404).json({
             "status": 'fail',
             "message": err.message
         })
-    });
-
+    }
 }
+
 
 /*
 
@@ -103,7 +103,7 @@ json = {
 
 const updateblog = async (req, res) => {
 
-    //Write your code here.
+    //Write ypur code here.
 
 }
 
