@@ -1,5 +1,5 @@
 const fs = require("fs");
-const Blog = require('./models/Blog.js');
+const Blog = require('./models/blog.js');
 const blog_list = JSON.parse(fs.readFileSync(`${__dirname}/./data/blogs.json`));
 
 async function seedWithDummyData() {
